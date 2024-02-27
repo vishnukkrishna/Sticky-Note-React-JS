@@ -12,15 +12,13 @@ function App() {
   );
 
   const addNote = (color) => {
-    const tempNotes = [...notes];
-
-    tempNotes.push({
+    const newNote = {
       id: Date.now() + "" + Math.floor(Math.random() * 78),
       text: "",
       time: Date.now(),
       color,
-    });
-    setNotes(tempNotes);
+    };
+    setNotes([newNote, ...notes]);
   };
 
   const deleteNote = (id) => {
@@ -42,13 +40,10 @@ function App() {
     }).then((result) => {
       if (result.isConfirmed) {
         const tempNotes = [...notes];
-
         const index = tempNotes.findIndex((item) => item.id === id);
         if (index < 0) return;
-
         tempNotes.splice(index, 1);
         setNotes(tempNotes);
-
         MySwal.fire({
           title: <p style={{ fontSize: "1.2rem" }}>Deleted!</p>,
           icon: "success",
@@ -62,10 +57,8 @@ function App() {
 
   const updateText = (text, id) => {
     const tempNotes = [...notes];
-
     const index = tempNotes.findIndex((item) => item.id === id);
     if (index < 0) return;
-
     tempNotes[index].text = text;
     setNotes(tempNotes);
   };

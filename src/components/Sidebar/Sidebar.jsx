@@ -15,7 +15,7 @@ function Sidebar(props) {
             key={index}
             className="sidebar_list_item"
             style={{ backgroundColor: item }}
-            onClick={()=>props.addNote(item)}
+            onClick={() => props.addNote(item)}
           />
         ))}
       </ul>
