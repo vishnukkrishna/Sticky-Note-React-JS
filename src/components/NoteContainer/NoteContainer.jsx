@@ -1,35 +1,33 @@
 import React from "react";
 import Note from "../Note/Note";
 import "./NoteContainer.css";
+import emptyNoteIcon from "../../assets/empty-note.png";
 
 function NoteContainer(props) {
-  const reverArray = (arr) => {
-    const array = [];
+  const { notes, deleteNote, updateText } = props;
 
-    for (let i = arr.length - 1; i >= 0; --i) {
-      array.push(arr[i]);
+  const renderNotes = () => {
+    if (notes.length === 0) {
+      return (
+        <div className="empty-notes">
+          <img src={emptyNoteIcon} alt="Empty Note" />
+        </div>
+      );
     }
-    return array;
-  };
 
-  const notes = reverArray(props.notes);
+    return notes.map((note) => (
+      <Note
+        key={note.id}
+        note={note}
+        deleteNote={deleteNote}
+        updateText={updateText}
+      />
+    ));
+  };
   return (
     <div className="note-container">
       <h2>Notes</h2>
-      <div className="note-container_notes custom-scroll">
-        {notes && notes.length > 0 ? (
-          notes.map((item) => (
-            <Note
-              key={item.id}
-              note={item}
-              deleteNote={props.deleteNote}
-              updateText={props.updateText}
-            />
-          ))
-        ) : (
-          <h3>No Notes Present</h3>
-        )}
-      </div>
+      <div className="note-container_notes custom-scroll">{renderNotes()}</div>
     </div>
   );
 }

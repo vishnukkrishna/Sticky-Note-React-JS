@@ -8,6 +8,11 @@
   height: 50px;
   width: 50px;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.sidebar img:hover {
+  transform: rotate(360deg);
 }
 
 .sidebar_list {
@@ -16,7 +21,16 @@
   gap: 20px;
   align-items: center;
   height: 0;
-  transition: 300ms;
+  overflow: hidden;
+  transition: height 300ms ease;
+}
+
+.sidebar.active .sidebar_list {
+  max-height: 500px;
+}
+
+.sidebar_list_item {
+  animation: slideIn 0.3s ease forwards;
 }
 
 .sidebar_list_active {

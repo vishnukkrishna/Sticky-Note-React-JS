@@ -1,11 +1,18 @@
 .note {
   padding: 25px;
-  height: 280px;
-  width: 260px;
+  height: 350px;
+  width: 300px;
   display: flex;
   flex-direction: column;
-  background-color: blueviolet;
-  border-radius: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  background-color: #f4f4f4;
+}
+
+.note:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .note_text {
@@ -13,21 +20,23 @@
   resize: none;
   background-color: transparent;
   font-size: 1rem;
-  line-height: 1.875rem;
+  line-height: 1.5;
   outline: none;
   border: none;
+  color: #333;
 }
 
 .note_footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 15px;
 }
 
 .note_footer img {
   cursor: pointer;
   opacity: 0;
-  transition: 300ms;
+  transition: opacity 0.3s ease;
   width: 20px;
   height: 20px;
 }

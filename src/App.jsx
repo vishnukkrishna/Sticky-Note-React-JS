@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import NoteContainer from "./components/NoteContainer/NoteContainer";
 import Sidebar from "./components/Sidebar/Sidebar";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function App() {
+  const MySwal = withReactContent(Swal);
   const [notes, setNotes] = useState(
     JSON.parse(localStorage.getItem("notes-app")) || []
   );
@@ -21,13 +24,40 @@ function App() {
   };
 
   const deleteNote = (id) => {
-    const tempNotes = [...notes];
+    MySwal.fire({
+      title: <p style={{ fontSize: "1.5rem" }}>Are you sure?</p>,
+      text: "You won't be able to delete this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+      customClass: {
+        title: "my-title-class",
+        popup: "my-popup-class",
+        confirmButton: "my-confirm-button-class",
+        cancelButton: "my-cancel-button-class",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const tempNotes = [...notes];
 
-    const index = tempNotes.findIndex((item) => item.id === id);
-    if (index < 0) return;
+        const index = tempNotes.findIndex((item) => item.id === id);
+        if (index < 0) return;
 
-    tempNotes.splice(index, 1);
-    setNotes(tempNotes);
+        tempNotes.splice(index, 1);
+        setNotes(tempNotes);
+
+        MySwal.fire({
+          title: <p style={{ fontSize: "1.2rem" }}>Deleted!</p>,
+          icon: "success",
+          timer: 350,
+          timerProgressBar: true,
+          showConfirmButton: false,
+        });
+      }
+    });
   };
 
   const updateText = (text, id) => {
