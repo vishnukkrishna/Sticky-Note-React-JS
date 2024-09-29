@@ -27,13 +27,43 @@
 }
 
 .empty-notes img {
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   height: auto;
   max-height: 800px;
-  margin-bottom: 250px;
+  margin-bottom: 50px;
+  object-fit: contain;
 }
 
 .empty-notes p {
   color: #666;
   margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .empty-notes img {
+    max-width: 550px;
+    margin-bottom: 90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .empty-notes img {
+    max-width: 550px;
+    margin-bottom: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  .empty-notes img {
+    max-width: 550px;
+    margin-bottom: 90px;
+  }
+}
+
+@media (max-width > 320px) {
+  .empty-notes img {
+    max-width: 550px;
+    margin-bottom: 90px;
+  }
 }

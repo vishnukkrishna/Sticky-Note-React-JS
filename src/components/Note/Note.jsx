@@ -10,8 +10,8 @@ function Note(props) {
     const monthNames = [
       "Jan",
       "Feb",
-      "March",
-      "April",
+      "Mar",
+      "Apr",
       "May",
       "Jun",
       "Jul",
@@ -24,8 +24,12 @@ function Note(props) {
 
     let hrs = date.getHours();
     let amPm = hrs >= 12 ? "PM" : "AM";
-    hrs = hrs ? hrs : "12";
-    hrs = hrs > 12 ? (hrs = 24 - hrs) : hrs;
+
+    if (hrs === 0) {
+      hrs = 12;
+    } else if (hrs > 12) {
+      hrs = hrs - 12;
+    }
 
     let min = date.getMinutes();
     min = min < 10 ? "0" + min : min;
@@ -47,6 +51,7 @@ function Note(props) {
   const updateText = (text, id) => {
     debounce(() => props.updateText(text, id));
   };
+
   return (
     <div className="note" style={{ backgroundColor: props.note.color }}>
       <textarea
