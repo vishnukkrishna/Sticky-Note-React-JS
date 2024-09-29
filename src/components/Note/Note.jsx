@@ -3,6 +3,15 @@ import "./Note.css";
 import deleteIcon from "../../assets/delete.png";
 
 function Note(props) {
+  const {
+    note,
+    deleteNote,
+    updateText: updateTextFromProps,
+    onDragStart,
+    onDragOver,
+    onDrop,
+  } = props;
+
   const formatDate = (value) => {
     if (!value) return "";
 
@@ -28,13 +37,13 @@ function Note(props) {
     if (hrs === 0) {
       hrs = 12;
     } else if (hrs > 12) {
-      hrs = hrs - 12;
+      hrs -= 12;
     }
 
     let min = date.getMinutes();
     min = min < 10 ? "0" + min : min;
 
-    let day = date.getDate();
+    const day = date.getDate();
     const month = monthNames[date.getMonth()];
 
     return `${hrs}:${min} ${amPm} ${day} ${month}`;
@@ -49,11 +58,18 @@ function Note(props) {
   };
 
   const updateText = (text, id) => {
-    debounce(() => props.updateText(text, id));
+    debounce(() => updateTextFromProps(text, id)); // Use the renamed prop function
   };
 
   return (
-    <div className="note" style={{ backgroundColor: props.note.color }}>
+    <div
+      className="note"
+      style={{ backgroundColor: props.note.color }}
+      draggable
+      onDragStart={() => onDragStart(props.note.id)}
+      onDragOver={onDragOver}
+      onDrop={() => onDrop(props.note.id)}
+    >
       <textarea
         className="note_text"
         defaultValue={props.note.text}
@@ -64,7 +80,7 @@ function Note(props) {
         <img
           src={deleteIcon}
           alt="DELETE"
-          onClick={() => props.deleteNote(props.note.id)}
+          onClick={() => deleteNote(props.note.id)}
         />
       </div>
     </div>

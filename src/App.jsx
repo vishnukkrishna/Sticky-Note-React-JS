@@ -63,6 +63,10 @@ function App() {
     setNotes(tempNotes);
   };
 
+  const updateNotes = (newNotes) => {
+    setNotes(newNotes);
+  };
+
   useEffect(() => {
     localStorage.setItem("notes-app", JSON.stringify(notes));
   }, [notes]);
@@ -74,6 +78,7 @@ function App() {
         notes={notes}
         deleteNote={deleteNote}
         updateText={updateText}
+        updateNotes={updateNotes} // Pass the updateNotes function here
       />
     </div>
   );
