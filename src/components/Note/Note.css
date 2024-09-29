@@ -8,11 +8,11 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   background-color: #f4f4f4;
-  cursor: grab; /* Add grab cursor for draggable note */
+  cursor: grab;
 }
 
 .note:active {
-  cursor: grabbing; /* Show grabbing cursor during drag */
+  cursor: grabbing;
 }
 
 .note:hover {

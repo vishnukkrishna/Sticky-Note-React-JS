@@ -58,7 +58,7 @@ function Note(props) {
   };
 
   const updateText = (text, id) => {
-    debounce(() => updateTextFromProps(text, id)); // Use the renamed prop function
+    debounce(() => updateTextFromProps(text, id));
   };
 
   return (

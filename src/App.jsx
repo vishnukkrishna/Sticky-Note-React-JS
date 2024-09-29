@@ -78,7 +78,7 @@ function App() {
         notes={notes}
         deleteNote={deleteNote}
         updateText={updateText}
-        updateNotes={updateNotes} // Pass the updateNotes function here
+        updateNotes={updateNotes}
       />
     </div>
   );

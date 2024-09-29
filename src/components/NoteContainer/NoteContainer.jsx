@@ -28,7 +28,7 @@ function NoteContainer(props) {
     const [removedNote] = updatedNotes.splice(draggedNoteIndex, 1);
     updatedNotes.splice(droppedNoteIndex, 0, removedNote);
 
-    props.updateNotes(updatedNotes); // Call the method to update the notes in the parent component
+    props.updateNotes(updatedNotes);
     setDraggedNoteId(null);
   };
 
